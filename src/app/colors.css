@@ -1,0 +1,40 @@
+/* =============================================================
+   COLOR TOKENS — single source of truth for the whole site.
+   Change a value here and it updates everywhere it is used.
+   `*-rgb` triplets exist for colors used with transparency,
+   e.g. rgba(var(--brand-rgb), 0.2).
+   ============================================================= */
+
+:root {
+  /* Brand — royal gold */
+  --brand: #9a6f0f;
+  --brand-dark: #714f08;
+  --brand-soft: #f6ebcf;
+  --brand-rgb: 154, 111, 15;
+
+  /* Accent — bright gold shimmer */
+  --gold: #c8992f;
+  --gold-soft: #e7c56a;
+  --gold-ink: #3a2408; /* readable text on gold buttons */
+  --gold-rgb: 200, 153, 47;
+
+  /* Neutrals */
+  --cream: #fffaf0;
+  --ink: #2a1d0a;
+  --muted: #6f5d38;
+
+  /* Page background gradient stops */
+  --bg-1: #fffaf0;
+  --bg-2: #fdf3dd;
+  --bg-3: #f8e8cc;
+
+  /* Base surface / text */
+  --background: #fffaf0;
+  --foreground: #2a1d0a;
+
+  /* Third-party / utility */
+  --whatsapp: #25d366; /* official WhatsApp brand green */
+  --whatsapp-dark: #1da851; /* darker green for hover/active */
+  --white-rgb: 255, 255, 255;
+  --black-rgb: 0, 0, 0;
+}

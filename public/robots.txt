@@ -1,0 +1,34 @@
+# Robots.txt - SEO Configuration for Search Engines
+# This file tells search engines how to crawl and index your website
+
+# Rule for all user agents (all search engines)
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /public/
+
+# Sitemap location
+Sitemap: https://jayukhiladi.com/sitemap.xml
+
+# Crawl delay (optional - limits requests per second)
+Crawl-delay: 1
+
+# Specific rules for Googlebot
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Specific rules for Bingbot
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Block bad bots
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+Disallow: /
