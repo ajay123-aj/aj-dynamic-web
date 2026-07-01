@@ -2,9 +2,9 @@
 export const site = {
   name: "Jayu Khiladi Safa Shop",
   tagline: "Royal Wedding Essentials",
-  phone: "919876543210",
-  phoneDisplay: "+91 98765 43210",
-  email: "hello@jayukhiladi.com",
+  phone: "917623038598",
+  phoneDisplay: "+91 76230 38598",
+  email: "hello@ajtechhub.com",
 };
 
 export const navLinks = [
