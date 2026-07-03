@@ -1,22 +1,23 @@
 import { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jayukhiladi.com";
-const SITE_NAME = "Jayu Khiladi Safa Shop";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://vijayphotoframe.com";
+const SITE_NAME = "Vijay Photo Frame and Decor";
 const SITE_DESCRIPTION =
-  "Royal wedding safa, talwar rental, and wedding accessory styling for memorable celebrations. Premium groom attire and wedding essentials.";
+  "Custom photo frames, collage frames, wall decor, and personalized gifts crafted to preserve your favourite memories.";
 
 export const defaultMetadata: Metadata = {
-  title: `${SITE_NAME} | Royal Wedding Essentials`,
+  title: `${SITE_NAME} | Custom Frames & Home Decor`,
   description: SITE_DESCRIPTION,
   keywords: [
-    "safa",
-    "wedding safa",
-    "talwar",
-    "groom attire",
-    "wedding accessories",
-    "Indian wedding essentials",
-    "royal safa",
-    "wedding rental",
+    "photo frame",
+    "custom photo frame",
+    "collage frame",
+    "wall decor",
+    "personalized gifts",
+    "wooden photo frame",
+    "family collage frame",
+    "photo gift",
   ],
   authors: [{ name: SITE_NAME }],
   robots: {
@@ -35,7 +36,7 @@ export const defaultMetadata: Metadata = {
     locale: "en_IN",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | Royal Wedding Essentials`,
+    title: `${SITE_NAME} | Custom Frames & Home Decor`,
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -48,7 +49,7 @@ export const defaultMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | Royal Wedding Essentials`,
+    title: `${SITE_NAME} | Custom Frames & Home Decor`,
     description: SITE_DESCRIPTION,
     images: [`${SITE_URL}/twitter-image.jpg`],
   },
@@ -83,10 +84,10 @@ export function generateProductMetadata(
     description: product.description,
     keywords: [
       product.name.toLowerCase(),
-      "wedding",
-      "rental",
-      "safa",
-      "wedding accessories",
+      "photo frame",
+      "custom frame",
+      "wall decor",
+      "personalized gift",
     ],
     alternates: {
       canonical: productUrl,
@@ -154,14 +155,14 @@ export function generateOrganizationSchema() {
     image: `${SITE_URL}/og-image.jpg`,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    telephone: "+919876543210",
-    email: "hello@jayukhiladi.com",
+    telephone: "+917623038598",
+    email: "hello@vijayphotoframe.com",
     sameAs: [],
     address: {
       "@type": "PostalAddress",
       addressCountry: "IN",
     },
-    priceRange: "₹1,000 - ₹5,000",
+    priceRange: "₹500 - ₹2,000",
   };
 }
 

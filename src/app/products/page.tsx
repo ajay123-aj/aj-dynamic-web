@@ -39,7 +39,7 @@ export default function ProductsPage() {
             Our Collection
           </p>
           <h1 className="mt-1 text-4xl font-black sm:text-5xl">
-            Find your perfect wedding essentials
+            Find your perfect frames &amp; decor
           </h1>
         </div>
 

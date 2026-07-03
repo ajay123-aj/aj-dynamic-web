@@ -1,14 +1,14 @@
 // Homepage stats band
 export const stats: { value: string; label: string }[] = [
-  { value: "50+", label: "Wedding looks" },
-  { value: "24/7", label: "Booking support" },
-  { value: "100%", label: "Premium finish" },
+  { value: "5000+", label: "Frames delivered" },
+  { value: "100%", label: "Custom made" },
+  { value: "24/7", label: "Order support" },
 ];
 
 // "Why choose us" bullet points
 export const whyChooseUs: string[] = [
-  "Premium, well-maintained wedding pieces",
-  "Rental and purchase options available",
-  "On-time delivery with setup support",
-  "Custom styling for your wedding theme",
+  "Handcrafted frames with premium finishing",
+  "Fully customizable sizes, colours, and photos",
+  "Fast delivery with safe, protective packaging",
+  "Personalized gifting for every occasion",
 ];

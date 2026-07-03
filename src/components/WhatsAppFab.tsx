@@ -1,9 +1,9 @@
-import { whatsappLink } from "@/const/contact";
+import { queryMessage, whatsappLink } from "@/const/contact";
 
 export function WhatsAppFab() {
   return (
     <a
-      href={whatsappLink("Hello Jayu Khiladi Safa Shop, I have a query.")}
+      href={whatsappLink(queryMessage())}
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"

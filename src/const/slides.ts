@@ -9,26 +9,28 @@ export type HeroSlide = {
 export const heroSlides: HeroSlide[] = [
   {
     badge: "Signature Collection",
-    title: "Royal Safa Styling",
-    subtitle: "Premium groom safa sets crafted for every wedding celebration.",
-    cta: { label: "Explore Safas", href: "/products" },
+    title: "Custom Photo Frames",
+    subtitle:
+      "Beautifully handcrafted frames to preserve your favourite memories.",
+    cta: { label: "Explore Frames", href: "/products" },
     image:
-      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    badge: "Rental Service",
-    title: "Ceremonial Talwar Rental",
-    subtitle: "Elegant decorative swords delivered with full setup support.",
-    cta: { label: "View Talwars", href: "/products" },
+    badge: "Best Sellers",
+    title: "Family Collage Frames",
+    subtitle: "Turn your best moments into a stunning wall centrepiece.",
+    cta: { label: "View Collages", href: "/products" },
     image:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    badge: "Complete Setup",
-    title: "Wedding Decor Essentials",
-    subtitle: "Grand styling for entry, photography and venue decoration.",
+    badge: "Complete Decor",
+    title: "Wall Decor & Gifts",
+    subtitle:
+      "Personalized wall decor and gifting for every special occasion.",
     cta: { label: "See Decor", href: "/products" },
     image:
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=1600&q=80",
   },
 ];

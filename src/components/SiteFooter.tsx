@@ -8,15 +8,15 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-3">
             <span className="grid h-11 w-11 place-items-center rounded-full bg-white/10 text-lg ring-1 ring-gold/40">
-              👑
+              🖼️
             </span>
             <span className="text-lg font-bold text-white">
               {site.name}
             </span>
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
-            Premium wedding safa, talwar rental and royal accessories — styled
-            for grand celebrations.
+            Custom photo frames, collage frames, wall decor and personalized
+            gifts — crafted to make your memories shine.
           </p>
         </div>
 

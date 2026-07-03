@@ -1,6 +1,6 @@
 "use client";
 
-import { site, whatsappLink } from "@/const/contact";
+import { cartMessage, whatsappLink } from "@/const/contact";
 import { useCart } from "./CartProvider";
 
 export function CartDrawer() {
@@ -15,11 +15,7 @@ export function CartDrawer() {
     clearCart,
   } = useCart();
 
-  const checkoutHref = whatsappLink(
-    `Hello ${site.name}, I want to order: ${items
-      .map((item) => `${item.name} x${item.quantity}`)
-      .join(", ")}. Total ₹${total}.`,
-  );
+  const checkoutHref = whatsappLink(cartMessage(items, total));
 
   return (
     <>
@@ -68,7 +64,7 @@ export function CartDrawer() {
               </div>
               <p className="mt-4 font-semibold text-ink">Your cart is empty</p>
               <p className="mt-1 text-sm text-muted">
-                Add wedding essentials to see them here.
+                Add frames and decor to see them here.
               </p>
               <button
                 type="button"

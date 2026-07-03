@@ -84,7 +84,7 @@ export default function Home() {
                   Special Offers
                 </p>
                 <h3 className="mt-1 text-3xl font-bold sm:text-4xl">
-                  Trending wedding picks
+                  Trending frame picks
                 </h3>
               </div>
               <Link
@@ -109,12 +109,12 @@ export default function Home() {
                   Choose your Category
                 </p>
                 <h3 className="mt-1 text-3xl font-bold">
-                  Browse by wedding theme
+                  Browse by category
                 </h3>
               </div>
               <p className="max-w-xl text-sm text-muted">
-                Select the category that fits your wedding style and see the
-                matching products instantly.
+                Select the category that fits your space and see the matching
+                products instantly.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -146,7 +146,7 @@ export default function Home() {
                   Choose your Products
                 </p>
                 <h3 className="mt-1 text-3xl font-bold">
-                  Premium wedding essentials
+                  Premium frames &amp; decor
                 </h3>
               </div>
               <p className="text-sm text-muted">
@@ -203,11 +203,11 @@ export default function Home() {
                 Contact & Support
               </p>
               <h3 className="mt-2 text-3xl font-bold">
-                Book your wedding setup
+                Order your custom frames
               </h3>
               <p className="mt-3 max-w-md text-sm text-muted">
-                Call or WhatsApp us for bookings, delivery support, and custom
-                wedding styling requests. We help you plan the complete royal look.
+                Call or WhatsApp us for orders, custom sizing, delivery support,
+                and personalized gifting. We help you frame your best memories.
               </p>
               <div className="mt-4 space-y-2 text-sm text-muted">
                 <p>Mobile: {site.phoneDisplay}</p>

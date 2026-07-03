@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next";
 import { products } from "@/const/products";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jayukhiladi.com";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://vijayphotoframe.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Main pages
