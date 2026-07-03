@@ -3,34 +3,37 @@
    Change a value here and it updates everywhere it is used.
    `*-rgb` triplets exist for colors used with transparency,
    e.g. rgba(var(--brand-rgb), 0.2).
+
+   Theme: white / off-white glassmorphism with a graphite primary
+   and a soft champagne accent for warmth.
    ============================================================= */
 
 :root {
-  /* Brand — royal gold */
-  --brand: #9a6f0f;
-  --brand-dark: #714f08;
-  --brand-soft: #f6ebcf;
-  --brand-rgb: 154, 111, 15;
+  /* Brand — graphite (primary buttons, headings, dark accents) */
+  --brand: #2b2b30;
+  --brand-dark: #161619;
+  --brand-soft: #f2f0ec; /* warm off-white chip / pill background */
+  --brand-rgb: 43, 43, 48;
 
-  /* Accent — bright gold shimmer */
-  --gold: #c8992f;
-  --gold-soft: #e7c56a;
-  --gold-ink: #3a2408; /* readable text on gold buttons */
-  --gold-rgb: 200, 153, 47;
+  /* Accent — soft champagne (eyebrow labels, dots, CTA gradient) */
+  --gold: #b08d57;
+  --gold-soft: #d9c29a;
+  --gold-ink: #2b2b30; /* readable text on champagne buttons */
+  --gold-rgb: 176, 141, 87;
 
   /* Neutrals */
-  --cream: #fffaf0;
-  --ink: #2a1d0a;
-  --muted: #6f5d38;
+  --cream: #ffffff; /* solid surfaces e.g. cart drawer */
+  --ink: #1c1c1f; /* primary text */
+  --muted: #6c6c73; /* secondary / muted text */
 
-  /* Page background gradient stops */
-  --bg-1: #fffaf0;
-  --bg-2: #fdf3dd;
-  --bg-3: #f8e8cc;
+  /* Page background gradient stops — white → off-white */
+  --bg-1: #ffffff;
+  --bg-2: #f7f6f3;
+  --bg-3: #efece6;
 
   /* Base surface / text */
-  --background: #fffaf0;
-  --foreground: #2a1d0a;
+  --background: #f7f6f3;
+  --foreground: #1c1c1f;
 
   /* Third-party / utility */
   --whatsapp: #25d366; /* official WhatsApp brand green */

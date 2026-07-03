@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { cartMessage, whatsappLink } from "@/const/contact";
 import { useCart } from "./CartProvider";
 
@@ -33,11 +34,11 @@ export function CartDrawer() {
         role="dialog"
         aria-modal="true"
         aria-label="Shopping cart"
-        className={`fixed right-0 top-0 z-[70] flex h-full w-full max-w-md flex-col bg-cream shadow-2xl transition-transform duration-300 ${
+        className={`fixed right-0 top-0 z-[70] flex h-full w-full max-w-md flex-col border-l border-white/60 bg-[rgba(255,255,255,0.82)] shadow-[-24px_0_70px_rgba(var(--brand-rgb),0.16)] backdrop-blur-2xl transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <header className="flex items-center justify-between border-b border-brand/10 bg-brand px-5 py-4 text-white">
+        <header className="flex items-center justify-between border-b border-white/10 bg-gradient-to-br from-brand to-brand-dark px-5 py-4 text-white">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold-soft">
               Your Cart
@@ -78,36 +79,54 @@ export function CartDrawer() {
             <ul className="space-y-3">
               {items.map((item) => (
                 <li
-                  key={item.id}
-                  className="flex gap-3 rounded-2xl border border-white/70 bg-white p-3 shadow-sm"
+                  key={item.key}
+                  className="flex gap-3 rounded-2xl border border-white/70 bg-white/70 p-3 shadow-sm backdrop-blur transition hover:border-white hover:shadow-md"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={item.images[0]}
-                    alt={item.name}
-                    loading="lazy"
-                    className="h-16 w-16 shrink-0 rounded-xl object-cover"
-                  />
+                  <Link
+                    href={`/products/${item.id}`}
+                    onClick={closeCart}
+                    aria-label={`View ${item.name}`}
+                    className="shrink-0"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={item.images[0]}
+                      alt={item.name}
+                      loading="lazy"
+                      className="h-16 w-16 rounded-xl object-cover transition hover:opacity-90"
+                    />
+                  </Link>
                   <div className="flex flex-1 flex-col">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="font-semibold leading-tight text-ink">
+                      <Link
+                        href={`/products/${item.id}`}
+                        onClick={closeCart}
+                        className="font-semibold leading-tight text-ink transition hover:text-brand"
+                      >
                         {item.name}
-                      </p>
+                      </Link>
                       <button
                         type="button"
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => removeFromCart(item.key)}
                         aria-label={`Remove ${item.name}`}
                         className="text-muted transition hover:text-brand"
                       >
                         ✕
                       </button>
                     </div>
-                    <p className="text-sm text-muted">₹{item.price} each</p>
+                    <p className="mt-0.5 text-xs font-semibold text-brand">
+                      Size: {item.size}
+                    </p>
+                    <p className="text-sm text-muted">
+                      {item.price > 0
+                        ? `₹${item.price} each`
+                        : "Price on request"}
+                    </p>
                     <div className="mt-auto flex items-center justify-between pt-2">
                       <div className="flex items-center gap-2">
                         <button
                           type="button"
-                          onClick={() => updateQuantity(item.id, -1)}
+                          onClick={() => updateQuantity(item.key, -1)}
                           aria-label={`Reduce ${item.name}`}
                           className="h-7 w-7 rounded-full bg-brand-soft font-bold text-brand transition hover:bg-brand hover:text-white"
                         >
@@ -118,7 +137,7 @@ export function CartDrawer() {
                         </span>
                         <button
                           type="button"
-                          onClick={() => updateQuantity(item.id, 1)}
+                          onClick={() => updateQuantity(item.key, 1)}
                           aria-label={`Add ${item.name}`}
                           className="h-7 w-7 rounded-full bg-brand font-bold text-white transition hover:bg-brand-dark"
                         >
@@ -126,7 +145,9 @@ export function CartDrawer() {
                         </button>
                       </div>
                       <span className="font-bold text-brand">
-                        ₹{item.price * item.quantity}
+                        {item.price > 0
+                          ? `₹${item.price * item.quantity}`
+                          : "On request"}
                       </span>
                     </div>
                   </div>
@@ -137,7 +158,7 @@ export function CartDrawer() {
         </div>
 
         {items.length > 0 && (
-          <footer className="border-t border-brand/10 bg-white/70 px-5 py-4 backdrop-blur">
+          <footer className="border-t border-white/50 bg-white/60 px-5 py-4 backdrop-blur-xl">
             <div className="flex items-center justify-between">
               <span className="text-sm font-semibold uppercase tracking-wider text-muted">
                 Total

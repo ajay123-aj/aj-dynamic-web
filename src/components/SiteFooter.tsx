@@ -7,9 +7,12 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-white/10 text-lg ring-1 ring-gold/40">
-              🖼️
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo.png"
+              alt={site.name}
+              className="h-11 w-11 shrink-0 rounded-full object-cover ring-1 ring-gold/40"
+            />
             <span className="text-lg font-bold text-white">
               {site.name}
             </span>

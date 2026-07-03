@@ -11,7 +11,7 @@ import {
 } from "@/const/products";
 import { site, whatsappLink } from "@/const/contact";
 import { stats, whyChooseUs } from "@/const/content";
-import { useCart } from "@/components/CartProvider";
+import { AddToCartControl } from "@/components/AddToCartControl";
 import { HeroSlider } from "@/components/HeroSlider";
 import { OfferCard } from "@/components/OfferCard";
 import { ProductCard } from "@/components/ProductCard";
@@ -20,7 +20,6 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SITE_URL_CONSTANT } from "@/lib/seo";
 
 export default function Home() {
-  const { addToCart } = useCart();
   const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
   const [visibleCount, setVisibleCount] = useState(6);
 
@@ -159,23 +158,7 @@ export default function Home() {
                 <ProductCard
                   key={product.id}
                   product={product}
-                  actions={
-                    <>
-                      <button
-                        type="button"
-                        onClick={() => addToCart(product)}
-                        className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
-                      >
-                        Add to Cart
-                      </button>
-                      <Link
-                        href={`/products/${product.id}`}
-                        className="rounded-full border border-brand px-4 py-2 text-sm font-semibold text-brand transition hover:bg-brand-soft"
-                      >
-                        View Details
-                      </Link>
-                    </>
-                  }
+                  actions={<AddToCartControl product={product} />}
                 />
               ))}
             </div>

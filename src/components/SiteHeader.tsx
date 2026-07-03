@@ -41,28 +41,33 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/50 glass">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/#top" className="flex items-center gap-3">
-          <span className="grid h-11 w-11 place-items-center rounded-full bg-brand text-lg shadow-lg shadow-brand/30 ring-1 ring-gold/40">
-            🖼️
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-[1.5rem] border border-white/60 bg-white/45 px-4 py-2.5 shadow-[0_16px_50px_rgba(var(--brand-rgb),0.12)] backdrop-blur-2xl backdrop-saturate-150 sm:px-5 sm:py-3">
+        <Link href="/#top" className="group flex items-center gap-3">
+          <span className="animate-logo-in inline-flex shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo.png"
+              alt={site.name}
+              className="h-11 w-11 rounded-full object-cover shadow-lg shadow-brand/25 ring-1 ring-white/40 transition duration-300 group-hover:scale-110 group-hover:-rotate-6"
+            />
           </span>
           <span className="leading-tight">
-            <span className="block text-lg font-bold text-brand">
+            <span className="animate-brand-in block text-base font-bold text-brand sm:text-lg">
               {site.name}
             </span>
-            <span className="block text-[11px] font-semibold uppercase tracking-[0.28em] text-gold">
+            <span className="animate-brand-in-delayed hidden text-[11px] font-semibold uppercase tracking-[0.28em] text-gold sm:block">
               {site.tagline}
             </span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 rounded-full border border-white/50 bg-white/40 p-1 backdrop-blur md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="rounded-full px-4 py-2 text-sm font-semibold text-ink/80 transition hover:bg-brand hover:text-white"
+              className="rounded-full px-4 py-1.5 text-sm font-semibold text-ink/75 transition hover:bg-brand hover:text-white"
             >
               {link.name}
             </Link>
@@ -74,14 +79,14 @@ export function SiteHeader() {
             href={whatsappLink()}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-brand/30 px-4 py-2 text-sm font-semibold text-brand transition hover:bg-brand-soft"
+            className="rounded-full border border-brand/25 bg-white/40 px-4 py-2 text-sm font-semibold text-brand backdrop-blur transition hover:bg-brand-soft"
           >
             WhatsApp
           </a>
           <CartButton />
           <Link
             href="/products"
-            className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
+            className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition hover:-translate-y-0.5 hover:bg-brand-dark"
           >
             Shop Now
           </Link>
@@ -94,7 +99,7 @@ export function SiteHeader() {
             onClick={() => setOpen((value) => !value)}
             aria-label="Toggle menu"
             aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-full border border-brand/20 text-xl text-brand"
+            className="grid h-10 w-10 place-items-center rounded-full border border-brand/20 bg-white/40 text-xl text-brand backdrop-blur"
           >
             {open ? "✕" : "☰"}
           </button>
@@ -102,8 +107,8 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="border-t border-white/60 glass md:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3">
+        <div className="mx-auto mt-2 max-w-7xl rounded-[1.5rem] border border-white/60 bg-white/55 shadow-[0_16px_50px_rgba(var(--brand-rgb),0.12)] backdrop-blur-2xl backdrop-saturate-150 md:hidden">
+          <nav className="flex flex-col gap-1 p-3">
             {navLinks.map((link) => (
               <Link
                 key={link.name}

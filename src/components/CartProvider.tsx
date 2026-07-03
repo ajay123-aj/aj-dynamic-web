@@ -10,12 +10,36 @@ import {
   useSyncExternalStore,
   type ReactNode,
 } from "react";
-import { products, type Product } from "@/const/products";
+import {
+  DEFAULT_SIZE,
+  priceForSize,
+  products,
+  type Product,
+} from "@/const/products";
 
-type CartMap = Record<number, number>;
-export type CartItem = Product & { quantity: number };
+// Cart is keyed by `${productId}::${size}` so the same product in two sizes
+// counts as two separate line items.
+type CartMap = Record<string, number>;
+export type CartItem = Product & {
+  price: number;
+  size: string;
+  quantity: number;
+  key: string;
+};
 
-const STORAGE_KEY = "jayu-cart";
+const STORAGE_KEY = "vijay-cart";
+
+function cartKey(id: number, size: string) {
+  return `${id}::${size}`;
+}
+
+function parseCartKey(key: string): { id: number; size: string } {
+  const separator = key.indexOf("::");
+  return {
+    id: Number(key.slice(0, separator)),
+    size: key.slice(separator + 2),
+  };
+}
 
 /**
  * Cart is kept in a small localStorage-backed external store and read via
@@ -62,20 +86,23 @@ const getSnapshot = () => state;
 const getServerSnapshot = () => EMPTY;
 
 const cartStore = {
-  add: (id: number) => writeState({ ...state, [id]: (state[id] || 0) + 1 }),
-  update: (id: number, amount: number) => {
+  add: (id: number, size: string) => {
+    const key = cartKey(id, size);
+    writeState({ ...state, [key]: (state[key] || 0) + 1 });
+  },
+  update: (key: string, amount: number) => {
     const next = { ...state };
-    const updated = (next[id] || 0) + amount;
+    const updated = (next[key] || 0) + amount;
     if (updated <= 0) {
-      delete next[id];
+      delete next[key];
     } else {
-      next[id] = updated;
+      next[key] = updated;
     }
     writeState(next);
   },
-  remove: (id: number) => {
+  remove: (key: string) => {
     const next = { ...state };
-    delete next[id];
+    delete next[key];
     writeState(next);
   },
   clear: () => writeState({}),
@@ -88,9 +115,9 @@ type CartContextValue = {
   isOpen: boolean;
   openCart: () => void;
   closeCart: () => void;
-  addToCart: (product: Product) => void;
-  updateQuantity: (id: number, amount: number) => void;
-  removeFromCart: (id: number) => void;
+  addToCart: (product: Product, size?: string) => void;
+  updateQuantity: (key: string, amount: number) => void;
+  removeFromCart: (key: string) => void;
   clearCart: () => void;
 };
 
@@ -111,9 +138,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const items = useMemo(
     () =>
       Object.entries(cart)
-        .map(([id, quantity]) => {
-          const product = products.find((item) => item.id === Number(id));
-          return product ? { ...product, quantity } : null;
+        .map(([key, quantity]) => {
+          const { id, size } = parseCartKey(key);
+          const product = products.find((item) => item.id === id);
+          return product
+            ? {
+                ...product,
+                price: priceForSize(product, size),
+                size,
+                quantity,
+                key,
+              }
+            : null;
         })
         .filter(Boolean) as CartItem[],
     [cart],
@@ -122,10 +158,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const count = items.reduce((sum, item) => sum + item.quantity, 0);
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const addToCart = useCallback((product: Product) => {
-    cartStore.add(product.id);
-    setIsOpen(true);
-  }, []);
+  const addToCart = useCallback(
+    (product: Product, size: string = DEFAULT_SIZE) => {
+      cartStore.add(product.id, size);
+      setIsOpen(true);
+    },
+    [],
+  );
 
   const value: CartContextValue = {
     items,

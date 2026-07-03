@@ -4,7 +4,13 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound, useParams } from "next/navigation";
 import { useMemo, useState } from "react";
-import { products } from "@/const/products";
+import {
+  DEFAULT_SIZE,
+  frameSizes,
+  priceForSize,
+  products,
+  startingPrice,
+} from "@/const/products";
 import { orderMessage, whatsappLink } from "@/const/contact";
 import { useCart } from "@/components/CartProvider";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -20,6 +26,8 @@ export default function ProductDetailPage() {
   const productId = Number(params?.id);
   const { addToCart } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
+  const [size, setSize] = useState<string>(DEFAULT_SIZE);
+  const [customSize, setCustomSize] = useState("");
 
   const product = useMemo(
     () => products.find((item) => item.id === productId),
@@ -30,8 +38,18 @@ export default function ProductDetailPage() {
     notFound();
   }
 
-  // Generate structured data
-  const productSchema = generateProductSchema(product);
+  // For "Custom", use the typed dimensions (falling back to the label).
+  const effectiveSize =
+    size === "Custom" ? customSize.trim() || "Custom" : size;
+  // Custom sizes have no fixed price → quoted on WhatsApp.
+  const price = priceForSize(product, size);
+  const priceLabel = price > 0 ? `₹${price}` : "Price on request";
+
+  // Generate structured data (schema uses the starting price as a base).
+  const productSchema = generateProductSchema({
+    ...product,
+    price: startingPrice(product),
+  });
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: SITE_URL_CONSTANT },
     { name: "Products", url: `${SITE_URL_CONSTANT}/products` },
@@ -117,7 +135,7 @@ export default function ProductDetailPage() {
                 <h2 className="mt-3 text-4xl font-black">{product.name}</h2>
                 <p className="mt-4 text-lg text-muted">{product.description}</p>
                 <p className="mt-5 text-3xl font-black text-brand">
-                  ₹{product.price}
+                  {priceLabel}
                 </p>
                 <ul className="mt-5 space-y-3">
                   {product.details.map((detail) => (
@@ -132,16 +150,62 @@ export default function ProductDetailPage() {
                 </ul>
               </div>
 
+              {/* Size selector */}
+              <div className="mt-6">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-bold text-ink">
+                    Choose size (inches)
+                  </p>
+                  <span className="text-xs font-semibold text-muted">
+                    Selected: <span className="text-brand">{effectiveSize}</span>
+                  </span>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {frameSizes.map((option) => {
+                    const optionPrice = priceForSize(product, option);
+                    return (
+                      <button
+                        key={option}
+                        type="button"
+                        onClick={() => setSize(option)}
+                        className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                          size === option
+                            ? "bg-brand text-white shadow-lg shadow-brand/25"
+                            : "bg-brand-soft text-brand hover:bg-brand hover:text-white"
+                        }`}
+                      >
+                        {option}
+                        {optionPrice > 0 && (
+                          <span className="ml-1.5 opacity-70">
+                            ₹{optionPrice}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+                {size === "Custom" && (
+                  <input
+                    value={customSize}
+                    onChange={(event) => setCustomSize(event.target.value)}
+                    placeholder="Enter custom size in inches, e.g. 20×30"
+                    className="mt-3 w-full rounded-2xl border border-brand/20 bg-white/80 px-4 py-3 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"
+                  />
+                )}
+              </div>
+
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
                   type="button"
-                  onClick={() => addToCart(product)}
+                  onClick={() => addToCart(product, effectiveSize)}
                   className="rounded-full bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-dark"
                 >
                   Add to Cart
                 </button>
                 <a
-                  href={whatsappLink(orderMessage(product.name, product.price))}
+                  href={whatsappLink(
+                    orderMessage(product.name, price, effectiveSize),
+                  )}
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-full bg-whatsapp px-5 py-3 font-semibold text-white transition hover:bg-whatsapp-dark"

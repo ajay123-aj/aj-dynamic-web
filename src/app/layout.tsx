@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -7,6 +7,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import {
   defaultMetadata,
+  defaultViewport,
   generateOrganizationSchema,
   SITE_URL_CONSTANT,
 } from "@/lib/seo";
@@ -22,6 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = defaultMetadata;
+export const viewport: Viewport = defaultViewport;
 
 export default function RootLayout({
   children,

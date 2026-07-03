@@ -39,9 +39,17 @@ export function HeroSlider() {
                   idx === index ? "animate-kenburns" : ""
                 }`}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/50 to-transparent" />
             </div>
           ))}
+
+          {/* Slide counter */}
+          <div className="absolute right-5 top-5 z-10 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-bold tracking-widest text-white backdrop-blur-md">
+            {String(index + 1).padStart(2, "0")}
+            <span className="mx-1 text-white/50">/</span>
+            {String(count).padStart(2, "0")}
+          </div>
 
           <div className="relative flex h-full max-w-2xl flex-col justify-center gap-1 p-8 sm:p-12 lg:p-16">
             <div key={index} className="animate-fade-up">
@@ -63,7 +71,7 @@ export function HeroSlider() {
                 </Link>
                 <a
                   href="#contact"
-                  className="rounded-full border border-white/50 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  className="rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/20"
                 >
                   Book Now
                 </a>
@@ -75,7 +83,7 @@ export function HeroSlider() {
             type="button"
             onClick={() => go(-1)}
             aria-label="Previous slide"
-            className="absolute left-4 top-1/2 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/40 bg-black/25 text-2xl text-white backdrop-blur transition hover:bg-black/50 sm:grid"
+            className="absolute left-4 top-1/2 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-white/10 text-2xl text-white backdrop-blur-md transition hover:bg-white/25 sm:grid"
           >
             ‹
           </button>
@@ -83,7 +91,7 @@ export function HeroSlider() {
             type="button"
             onClick={() => go(1)}
             aria-label="Next slide"
-            className="absolute right-4 top-1/2 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/40 bg-black/25 text-2xl text-white backdrop-blur transition hover:bg-black/50 sm:grid"
+            className="absolute right-4 top-1/2 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-white/10 text-2xl text-white backdrop-blur-md transition hover:bg-white/25 sm:grid"
           >
             ›
           </button>
@@ -97,7 +105,7 @@ export function HeroSlider() {
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`h-2.5 rounded-full transition-all ${
                   idx === index
-                    ? "w-8 bg-gold"
+                    ? "w-9 bg-gold shadow-[0_0_12px_rgba(var(--gold-rgb),0.75)]"
                     : "w-2.5 bg-white/50 hover:bg-white/80"
                 }`}
               />

@@ -1,17 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import {
-  categories,
-  products,
-  type CategoryKey,
-  type Product,
-} from "@/const/products";
-import { useCart } from "@/components/CartProvider";
+import { categories, products, type CategoryKey } from "@/const/products";
+import { AddToCartControl } from "@/components/AddToCartControl";
 import { ProductCard } from "@/components/ProductCard";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import Link from "next/link";
 
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
@@ -80,7 +74,7 @@ export default function ProductsPage() {
               <ProductCard
                 key={product.id}
                 product={product}
-                actions={<ProductActions product={product} />}
+                actions={<AddToCartControl product={product} />}
               />
             ))}
           </section>
@@ -89,26 +83,5 @@ export default function ProductsPage() {
 
       <SiteFooter />
     </div>
-  );
-}
-
-function ProductActions({ product }: { product: Product }) {
-  const { addToCart } = useCart();
-  return (
-    <>
-      <button
-        type="button"
-        onClick={() => addToCart(product)}
-        className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
-      >
-        Add to Cart
-      </button>
-      <Link
-        href={`/products/${product.id}`}
-        className="rounded-full border border-brand px-4 py-2 text-sm font-semibold text-brand transition hover:bg-brand-soft"
-      >
-        View Details
-      </Link>
-    </>
   );
 }

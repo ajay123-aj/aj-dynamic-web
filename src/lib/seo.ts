@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://vijayphotoframe.com";
@@ -59,12 +59,14 @@ export const defaultMetadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
   metadataBase: new URL(SITE_URL),
+};
+
+// Next.js 16 requires viewport to be its own export, separate from metadata.
+export const defaultViewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export function generateProductMetadata(
